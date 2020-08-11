@@ -1,0 +1,9 @@
+name: "S3 Upload"
+description: "Upload files and directories to S3 compatible cloud buckets"
+author: "Koray Koska <koray@koska.at>"
+runs:
+  using: docker
+  image: Dockerfile
+branding:
+  icon: message-square
+  color: gray-dark

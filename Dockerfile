@@ -4,10 +4,6 @@ LABEL "version"="0.1.0"
 LABEL "repository"="https://github.com/koraykoska/s3-upload-github-action"
 LABEL "homepage"="https://github.com/koraykoska/s3-upload-github-action"
 LABEL "maintainer"="Koray Koska <koray@koska.at>"
-LABEL "com.github.actions.name"="S3 Upload"
-LABEL "com.github.actions.description"="Upload files and directories to S3 compatible cloud buckets"
-LABEL "com.github.actions.icon"="message-square"
-LABEL "com.github.actions.color"="gray-dark"
 
 # Add the entry point
 RUN mkdir /app
