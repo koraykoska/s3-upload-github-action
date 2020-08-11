@@ -22,6 +22,10 @@ const uploadFile = (fileName) => {
       Key: `${process.env.S3_PREFIX || ""}/${path.normalize(fileName)}`,
       Body: fileContent,
     };
+    const acl = process.env.S3_ACL;
+    if (acl) {
+      params.ACL = acl;
+    }
 
     // Uploading files to the bucket
     s3.upload(params, function (err, data) {
