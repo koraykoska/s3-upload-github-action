@@ -19,7 +19,7 @@ const uploadFile = (fileName) => {
     // Setting up S3 upload parameters
     const params = {
       Bucket: process.env.S3_BUCKET,
-      Key: fileName,
+      Key: `${process.env.S3_PREFIX || ""}/${path.normalize(fileName)}`,
       Body: fileContent,
     };
 
