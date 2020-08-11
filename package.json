@@ -1,0 +1,14 @@
+{
+  "name": "s3-upload-github-action",
+  "version": "0.1.0",
+  "description": "An S3 file and folder uploader Github Action",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Koray Koska",
+  "license": "MIT",
+  "dependencies": {
+    "aws-sdk": "^2.730.0"
+  }
+}
