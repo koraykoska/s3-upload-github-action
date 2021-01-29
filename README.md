@@ -11,6 +11,7 @@ You can upload files or directories to any S3 compatible cloud buckets.
 - S3_BUCKET: S3 Bucket
 - S3_ACCESS_KEY_ID: S3 Access Key ID
 - S3_SECRET_ACCESS_KEY: S3 Secret Access Key
+- SKIP_FILE_PATH: if true, it will skip the complete file path and only use the filename as key. example: `/folder_1/folder_2/folder_3/image.jpg` will be uploaded to `image.jpg` instead of all the path.
 
 ## Usage
 

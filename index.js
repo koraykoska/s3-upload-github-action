@@ -2,12 +2,23 @@ const aws = require("aws-sdk");
 const fs = require("fs");
 const path = require("path");
 
+// Add Array.last functionality
+if (!Array.prototype.hasOwnProperty("last")) {
+  Object.defineProperty(Array.prototype, "last", {
+    get() {
+      return this[this.length - 1];
+    }
+  });
+}
+
 const spacesEndpoint = new aws.Endpoint(process.env.S3_ENDPOINT);
 const s3 = new aws.S3({
   endpoint: spacesEndpoint,
   accessKeyId: process.env.S3_ACCESS_KEY_ID,
   secretAccessKey: process.env.S3_SECRET_ACCESS_KEY,
 });
+
+const skipFilePath = process.env.SKIP_FILE_PATH || false
 
 const uploadFile = (fileName) => {
   if (fs.lstatSync(fileName).isDirectory()) {
@@ -16,11 +27,12 @@ const uploadFile = (fileName) => {
     });
   } else {
     const fileContent = fs.readFileSync(fileName);
+    let fileNameToUse = skipFilePath ? fileName.split('/').last : fileName
 
     // Setting up S3 upload parameters
     const params = {
       Bucket: process.env.S3_BUCKET,
-      Key: `${process.env.S3_PREFIX || ""}/${path.normalize(fileName)}`,
+      Key: `${process.env.S3_PREFIX || ""}/${path.normalize(fileNameToUse)}`,
       Body: fileContent,
     };
     const acl = process.env.S3_ACL;
