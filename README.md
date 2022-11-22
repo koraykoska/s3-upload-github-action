@@ -1,3 +1,5 @@
+EDITED by ZabasJC
+
 # s3-upload-github-action
 
 S3 uploader for Github Actions.
@@ -23,7 +25,8 @@ jobs:
       - name: Upload file to bucket
         uses: koraykoska/s3-upload-github-action@master
         env:
-          FILE: ./releases/
+          FILE: ./releases/ # can handle a list of files divided by space
+          S3_PREFIX: 'whatever' # if blank, it will be skipped
           S3_ENDPOINT: 'ams3.digitaloceanspaces.com'
           S3_BUCKET: ${{ secrets.S3_BUCKET }}
           S3_ACCESS_KEY_ID: ${{ secrets.S3_ACCESS_KEY_ID }}
