@@ -18,11 +18,21 @@ const uploadFile = (fileName) => {
     const fileContent = fs.readFileSync(fileName);
 
     // Setting up S3 upload parameters
-    const params = {
-      Bucket: process.env.S3_BUCKET,
-      Key: `${process.env.S3_PREFIX || ""}/${path.normalize(fileName)}`,
-      Body: fileContent,
-    };
+
+    if (S3_PREFIX == '') {
+      var params = {
+        Bucket: process.env.S3_BUCKET,
+        Key: `${path.normalize(fileName)}`,
+        Body: fileContent,
+      };
+    } else {
+      var params = {
+        Bucket: process.env.S3_BUCKET,
+        Key: `${process.env.S3_PREFIX || ""}/${path.normalize(fileName)}`,
+        Body: fileContent,
+      };
+    }
+
     const acl = process.env.S3_ACL;
     if (acl) {
       params.ACL = acl;
