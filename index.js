@@ -48,4 +48,7 @@ const uploadFile = (fileName) => {
   }
 };
 
-uploadFile(process.env.FILE);
+const array = (process.env.FILE).split(" ");
+array.forEach((file) => {
+  uploadFile(file);
+})
